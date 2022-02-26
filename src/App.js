@@ -1,55 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { TreeView } from './features/nodes/TreeView';
 import './App.css';
+import Paper from '@mui/material/Paper';
+import { makeStyles } from '@mui/styles';
+import { Container, Grid } from '@mui/material';
+
+const useStyles = makeStyles({
+  paper: {
+    overflow:'hidden',
+    // margin: 'auto',
+    height: '90vh',
+    // width: '50vw'
+    padding:'15px'
+  }
+})
 
 function App() {
+  const classes = useStyles();
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
+        <Container>
+          <Paper className={classes.paper}>
+            <Grid xs={4}>
+              <TreeView />
+            </Grid>
+          </Paper>
+        </Container>
       </header>
     </div>
   );
