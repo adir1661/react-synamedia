@@ -1,16 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  addNodeAsync,
-  getNodesAync,
-  selectNodes,
-} from './nodesSlice';
+import { addNodeAsync, getNodesAync, selectNodes } from './nodesSlice';
 import MuiTreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
 import { makeStyles } from '@mui/styles';
-import { findNode } from './nodesOperations'
+import { findNode } from './nodesOperations';
 import LinearProgress from '@mui/material/LinearProgress';
 
 const useStyles = makeStyles({
@@ -21,17 +17,16 @@ const useStyles = makeStyles({
   }
 })
 
-function AddNode({ node , onAddNode}) {
+function AddNode({ node, onAddNode }) {
   const [name, setName] = useState('')
-  const dispatch = useDispatch()
   return <TreeItem
     key={node._id + '-add'}
     nodeId={node._id + '-add'}
     label={
       <span>
         <input value={name} placeholder='add node name' onChange={ev => setName(ev.target.value)} />
-        <button onClick={()=>{
-          onAddNode(name,node._id)
+        <button onClick={() => {
+          onAddNode(name, node._id)
           setName('')
         }} >add</button>
       </span>} />
@@ -42,9 +37,9 @@ export function TreeView() {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const onAddNode = useCallback(async (name, parentId)=>{
-    await dispatch(addNodeAsync({name, parentId}))
-  },[])
+  const onAddNode = useCallback(async (name, parentId) => {
+    await dispatch(addNodeAsync({ name, parentId }))
+  }, [])
   useEffect(() => {
     dispatch(getNodesAync(null))
   }, [])
